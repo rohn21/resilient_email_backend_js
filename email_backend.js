@@ -4,7 +4,8 @@ const SibApiV3Sdk = require('sib-api-v3-sdk');
 
 const defaultClient = SibApiV3Sdk.ApiClient.instance;
 const apiKey = defaultClient.authentications['api-key']
-apiKey.apiKey = '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';
+apiKey.apiKey = '#####';
+// apiKey.apiKey = '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';
 
 const handleRetryWithBackoff = async (func, args = [], retryCount = 3, timeDelay = 2000) => {
   for (let attempt = 1; attempt <= retryCount; attempt++) {
