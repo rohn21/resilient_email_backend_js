@@ -3,12 +3,11 @@ const ManageEmailService = require('./email_service');
 const emailService = new ManageEmailService();
 
 const recipients = [
-  'rohn2100@gmail.com',
-  'chauhanrohan2112@gmail.com',
-  'rohn2100@gmail.com',
-  'user@mail.com',
-  'user1@mail.com',
-
+  'user1@gmail.com',
+  'user2@gmail.com',
+  'user3@gmail.com',
+  'user4@mail.com',
+  'user5@mail.com',
 ];
 
 
