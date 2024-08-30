@@ -27,6 +27,10 @@ class EmailServerTwo {
   }
 }
 
+
+/*
+ * ManageEmailService class represents handling both email providers in case of fialures.
+ */
 class ManageEmailService {
   constructor() {
     this.servers = [
@@ -36,7 +40,7 @@ class ManageEmailService {
     this.ServerIndex = 0;
     this.sentEmailIds = new Set();
     this.emailTimeStamps = [];
-    this.attemptStatus = new Map();
+    // this.attemptStatus 
     this.rateLimit = 5;
     this.timeFrame = 60000;
 
@@ -58,14 +62,16 @@ class ManageEmailService {
 
     const maxAttempt = 3;
     let success = false;
-
+  /*
+  * Run for maximum 3 attempts in case of failure.
+  */
     for (let attempt = 0; attempt < maxAttempt; attempt++) {
       try {
         await this.servers[this.ServerIndex].sendEmail(to, subject, text);
         success = true;
         this.sentEmailIds.add(emailId);
         this.emailTimeStamps.push(Date.now());
-        this.attemptStatus.set(emailId, 'success');
+
         break;
       } catch (error) {
         console.error(`Mail server ${this.ServerIndex} failed on attempt ${attempt + 1}, retrying...`, error);
@@ -76,7 +82,6 @@ class ManageEmailService {
     
     if (!success) {
       console.error('All server failed');
-      this.attemptStatus.set(emailId, 'failed');
     }
   }
 
